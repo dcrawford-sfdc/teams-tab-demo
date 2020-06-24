@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src= 'https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
+</head>
+
+<body>
+    <div id="messageDisplay"></div>
+    <script>
+        document.getElementById('messageDisplay').innerHTML = "Page loaded...";
+        microsoftTeams.initialize();
+        document.getElementById('messageDisplay').innerHTML = "Teams initialized...";
+        microsoftTeams.authentication.notifySuccess('Success! The auth pop-out called notifySuccess');
+        document.getElementById('messageDisplay').innerHTML = "notifySuccess called. This pop-out should be closed, and a success message should be displayed in the tab";
+    </script>
+</body>
