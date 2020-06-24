@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
+    </head>
+    <body>
+        <script>
+            microsoftTeams.initialize();
+            microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+                microsoftTeams.settings.setSettings({
+                    suggestedDisplayName: "Dummy Auth",
+                    contentUrl: createTabUrl(),
+                    entityId: "dummyAuth",
+                    websiteUrl: createTabUrl(),
+                });
+                saveEvent.notifySuccess();
+            });
+
+            microsoftTeams.settings.setValidityState(true);
+
+            function createTabUrl() {
+                return window.location.protocol + '//' + window.location.host + '/teams-tab-demo/dummyAuth.html';
+            }
+        </script>
+    </body>
+</html>
