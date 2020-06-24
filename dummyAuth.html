@@ -17,10 +17,10 @@
                 height: 5000,
                 width: 5000,
                 successCallback: (message) => {
-                    document.getElementById('messageDisplay').innerHTML = message;
+                    document.getElementById('messageDisplay').innerHTML = "successCallback: " + message;
                 },
                 failureCallback: (message) => {
-                    document.getElementById('messageDisplay').innerHTML = message;
+                    document.getElementById('messageDisplay').innerHTML = "failureCallback: " + message;
                 }
             });
         }, 3000);
