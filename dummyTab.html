@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src= 'https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
+</head>
+
+<body>
+    <div id="messageDisplay"></div>
+    <script>
+        microsoftTeams.initialize();
+        window.setTimeout(function() {
+            microsoftTeams.authentication.authenticate({
+                url: window.location.protocol + '//' + window.location.host + '/dummyAuthPopout.html',
+                height: 5000,
+                width: 5000,
+                successCallback: (message) => {
+                    document.getElementById('messageDisplay').innerHTML = message;
+                },
+                failureCallback: (message) => {
+                    document.getElementById('messageDisplay').innerHTML = message;
+                }
+            });
+        }, 3000);
+    </script>
+</body>
