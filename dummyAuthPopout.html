@@ -7,11 +7,15 @@
 <body>
     <div id="messageDisplay"></div>
     <script>
-        document.getElementById('messageDisplay').innerHTML = "Page loaded...";
         microsoftTeams.initialize();
-        document.getElementById('messageDisplay').innerHTML = "Teams initialized...";
-        microsoftTeams.authentication.notifySuccess('Success! The auth pop-out called notifySuccess');
-        document.getElementById('messageDisplay').innerHTML = "notifySuccess called. This pop-out should be closed, and a success message should be displayed in the tab";
+
+        document.getElementById('messageDisplay').innerHTML = "This page should close in a few seconds";
+
+        window.setTimeout(function() {
+        	microsoftTeams.authentication.notifySuccess('Success! The auth pop-out called notifySuccess');
+        	document.getElementById('messageDisplay').innerHTML = "notifySuccess called. This pop-out should be closed, and a success message should be displayed in the tab";
+        }, 3000);
+
     </script>
 </body>
 </html>
