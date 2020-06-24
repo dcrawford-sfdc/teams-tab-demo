@@ -8,6 +8,9 @@
     <div id="messageDisplay"></div>
     <script>
         microsoftTeams.initialize();
+
+        document.getElementById('messageDisplay').innerHTML = "A pop-out will open in a few seconds";
+
         window.setTimeout(function() {
             microsoftTeams.authentication.authenticate({
                 url: window.location.protocol + '//' + window.location.host + '/dummyAuthPopout.html',
@@ -23,3 +26,4 @@
         }, 3000);
     </script>
 </body>
+</html>
