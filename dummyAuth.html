@@ -13,7 +13,7 @@
 
         window.setTimeout(function() {
             microsoftTeams.authentication.authenticate({
-                url: window.location.protocol + '//' + window.location.host + '/teams-tab-demo/dummyAuthPopout.html',
+                url: createPopoutUrl(),
                 height: 5000,
                 width: 5000,
                 successCallback: (message) => {
@@ -23,7 +23,12 @@
                     document.getElementById('messageDisplay').innerHTML = "failureCallback: " + message;
                 }
             });
-        }, 3000);
+        }, 2000);
+
+        function createPopoutUrl() {
+            let shouldNavigate = window.location.search.indexOf("nav=true") != -1;
+            return window.location.protocol + '//' + window.location.host + '/teams-tab-demo/' + (shouldNavigate ? 'dummyAuthPopoutNavigate.html' : 'dummyAuthPopout.html');
+        }
     </script>
 </body>
 </html>

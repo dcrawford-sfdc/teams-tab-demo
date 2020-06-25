@@ -3,22 +3,31 @@
         <script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
     </head>
     <body>
+        <button onclick="onClick(true)">With navigation</button>
+        <button onclick="onClick(false)">No navigation</button>
+        <div id="messageDisplay"></div>
         <script>
             microsoftTeams.initialize();
-            microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
-                microsoftTeams.settings.setSettings({
-                    suggestedDisplayName: "Dummy Auth",
-                    contentUrl: createTabUrl(),
-                    entityId: "dummyAuth",
-                    websiteUrl: createTabUrl(),
+
+            function onClick(shouldNavigate) {
+                document.getElementById('messageDisplay').innerHTML = shouldNavigate 
+                    ? "Create a tab that will open a pop-out that navigates across domains and back before calling notifySuccess"
+                    : "Create a tab that will open a pop-out that immediately calls notifySuccess";
+
+                microsoftTeams.settings.setValidityState(true);
+                microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+                    microsoftTeams.settings.setSettings({
+                        suggestedDisplayName: "DummyAuth - " + (shouldNavigate ? "nav" : "no-nav"),
+                        contentUrl: createTabUrl(shouldNavigate),
+                        entityId: "dummyAuth",
+                        websiteUrl: createTabUrl(shouldNavigate),
+                    });
+                    saveEvent.notifySuccess();
                 });
-                saveEvent.notifySuccess();
-            });
+            };
 
-            microsoftTeams.settings.setValidityState(true);
-
-            function createTabUrl() {
-                return window.location.protocol + '//' + window.location.host + '/teams-tab-demo/dummyAuth.html';
+            function createTabUrl(shouldNavigate) {
+                return window.location.protocol + '//' + window.location.host + '/teams-tab-demo/dummyAuth.html' + (shouldNavigate ? "?nav=true" : "")
             }
         </script>
     </body>

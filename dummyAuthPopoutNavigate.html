@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="messageDisplay"></div>
+    <script>
+        document.getElementById('messageDisplay').innerHTML = `This page will navigate in a few seconds. Current page: ${window.location.href}`;
+
+        window.setTimeout(function() {
+            window.location.href = 'https://dcrawford-sfdc.gitlab.io/teams-tab-demo-redirector/redirector.html';
+        }, 2000);
+
+    </script>
+</body>
+</html>
