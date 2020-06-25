@@ -5,13 +5,12 @@
 </head>
 
 <body>
+    <button onclick="onClick()">Open pop-out</button>
     <div id="messageDisplay"></div>
     <script>
         microsoftTeams.initialize();
 
-        document.getElementById('messageDisplay').innerHTML = "A pop-out will open in a few seconds";
-
-        window.setTimeout(function() {
+        function onClick() {
             microsoftTeams.authentication.authenticate({
                 url: createPopoutUrl(),
                 height: 5000,
@@ -23,7 +22,7 @@
                     document.getElementById('messageDisplay').innerHTML = "failureCallback: " + message;
                 }
             });
-        }, 2000);
+        }
 
         function createPopoutUrl() {
             let shouldNavigate = window.location.search.indexOf("nav=true") != -1;
